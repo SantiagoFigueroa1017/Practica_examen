@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 2</title>
+</head>
+<body>
+    
+
+    <!-- HTML -->
+    <div class="container">
+        <div class="row">
+            <input type="text" id="number" placeholder="Ingrese un número">
+        </div>
+        <button onclick="calcular()">CALCULAR</button>
+        <h3>Zona de impresión</h3>
+        <div class="result">
+            <div id="print_factorial"></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function calcular() {
+            let number = document.getElementById("number").value;
+
+            if(isNaN(number) == true || number < 1){
+                document.getElementById("number").focus();
+                Swal.fire({
+                    title: "Error",
+                    text: "Digite un número mayor o igual que 1",
+                    showConfirmButton : false,
+                    icon: "error",
+                    timer: 3000
+                })
+                document.getElementById("number").style.border = "2px solid red";
+            }
+            else{
+                document.getElementById("number").style.border = "2px solid green";
+
+                let cadena = " ";
+                let number1= 1;
+                let result = 1;
+                for(let i = number; i > 1; i--){
+                    result *= i;
+                    cadena +=  number1 + " * "+ i +  " = "+result + "\n";
+                    number1 = result;
+                    
+                }
+                
+                document.getElementById("print_factorial").innerText = cadena;
+                
+            }
+        }
+    </script>
+
+</body>
+</html>

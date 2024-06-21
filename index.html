@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica Examen Final</title>
+    <style>
+        body {
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .container {
+            height: 600px;
+            width: 400px;
+            border: 2px solid grey;
+            border-radius: 20px;
+            box-shadow: 0 0 10px gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cajas {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Etiquetas HTML -->
+    <div class="container">
+        <div class="row">
+            <input type="text" id="caja1">
+            <input type="text" id="caja2">
+        </div>
+        <h3>ZONA DE IMPRESIÓN</h3>
+        <div class="cajas">
+            <div id="print_par"></div>
+            <div id="print_impar"></div>
+        </div>
+        <button onclick="enviar()">ENVIAR</button>
+    </div>
+
+
+
+    <!-- Etiquetas JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function enviar() {
+            let caja1 = document.getElementById("caja1").value.trim();
+            let caja2 = document.getElementById("caja2").value.trim();
+
+
+            if (caja1.length == 0 || caja2.length == 0) {
+                Swal.fire({
+                    title: "Cajas de texto vacías",
+                    text: "Algunas cajas de texto se encuentran vacías",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if (caja1.length == 0) {
+                    document.getElementById("caja1").style.border = "2px solid red";
+                }
+                else {
+                    document.getElementById("caja1").style.border = "2px solid green";
+                }
+                if (caja2.length == 0) {
+                    document.getElementById("caja2").style.border = "2px solid red";
+                }
+                else {
+                    document.getElementById("caja2").style.boroder = "2px soid green";
+                }
+            } else {
+                document.getElementById("caja1").style.border = "2px solid black";
+                document.getElementById("caja2").style.border = "2px solid black";
+            }
+
+            if (isNaN(caja1) == true || isNaN(caja2) == true) {
+                Swal.fire("Solo se aceptan numeros")
+                document.getElementById("print_par").innerText = "";
+                document.getElementById("print_impar").innerText = "";
+            }
+            else {
+                let cadena_par = "";
+                let cadena_impar = "";
+                for (let i = caja1; i <= caja2; i++) {
+                    if (i % 2 == 0) {
+                        cadena_par += i + "\n";
+                    }
+                    else {
+                        cadena_impar += i + "\n";
+                    }
+                }
+                document.getElementById("print_par").innerText = "Números Pares" + "\n" + cadena_par;
+                document.getElementById("print_impar").innerText = "Números Impares" + "\n" + cadena_impar;
+            }
+
+
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            height: 600px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid grey;
+            box-shadow: 0 0 10px grey;
+            border-radius: 20px;
+            gap: 10px;
+        }
+
+        .result {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div class="container">
+        <div class="row">
+            <input type="text" id="number" placeholder="Ingrese un número">
+        </div>
+        <h3>Zona de impresion</h3>
+        <div class="result">
+            <label id="print"></label>
+            <label id="print_par"></label>
+            <label id="print_impar"></label>
+        </div>
+        <button onclick="calcular()">CALCULAR</button>
+    </div>
+
+
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function calcular() {
+            let number = document.getElementById("number").value.trim();
+            // parseInt(number);
+
+            if (isNaN(number) == true || number < 1) {
+                document.getElementById("number").focus();
+                Swal.fire({
+                    title: "Hay un error",
+                    text: "Debe ingresar un valor númerico mayor o igual que 1",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                document.getElementById("number").style.border = "2px solid red";
+
+
+            }
+            else {
+                document.getElementById("number").style.border = "2px solid green";
+
+                let num1 = 0;
+                let num2 = 1;
+                let resul = 0;
+                let cadena = "";
+                let count_par = 0;
+                let count_impar = 0;
+                for (let i = 1; i <= number; i++) {
+                    result = num1 + num2;
+                    cadena += num1 + " + " + num2 + " = " + result + "\n";
+                    num1 = num2;
+                    num2 = result;
+
+                    if (result % 2 == 0) {
+                        count_par++;
+                    }
+                    else {
+                        count_impar++;
+                    }
+                }
+                document.getElementById("print").innerText = cadena;
+                document.getElementById("print_par").innerText = "Números pares:" + "\n" + count_par;
+                document.getElementById("print_impar").innerText = "Números impares:" + "\n" + count_impar;
+            }
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>
