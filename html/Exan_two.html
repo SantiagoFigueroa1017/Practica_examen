@@ -4,6 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercice 2</title>
+
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            height: 600px;
+            width: 400px;
+            border: 2px solid gray;
+            box-shadow: 0 0 10px gray;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .result{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+    </style>
+
 </head>
 <body>
     
@@ -17,7 +48,7 @@
         <h3>Zona de impresión</h3>
         <div class="result">
             <div id="print_factorial"></div>
-            <div></div>
+            <div id="print_result"></div>
         </div>
     </div>
 
@@ -51,7 +82,7 @@
                     number1 = result;
                     
                 }
-                
+                document.getElementById("print_result").innerText = "El factorial de " + number + " es = " + result;
                 document.getElementById("print_factorial").innerText = cadena;
                 
             }
